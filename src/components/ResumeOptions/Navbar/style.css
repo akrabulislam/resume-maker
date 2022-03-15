@@ -1,0 +1,29 @@
+.options {
+  padding: 10px 10px 30px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.swiper-slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-next {
+  background-image: url(../../../assets/next.svg);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background-image: url(../../../assets/prev.svg);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: center;
+}

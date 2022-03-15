@@ -1,17 +1,19 @@
-.resume-output div {
-  width: 600px;
-  height: 100vh;
+.resume-output > div {
+  width: 21cm;
+  min-height: 29.7cm;
   background-color: white;
-  padding: 20px;
   box-shadow: 0 0 0.5cm #7b7d7d;
   margin-left: auto;
   margin-right: auto;
 }
 
+.resume-output > div .resume-content{
+  padding : 20px;
+}
+
 .resume-output {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
 
 
@@ -32,10 +34,15 @@
   margin-right: auto;
   z-index: 10000;
   text-align: center;
-  background: #e9dfdf00;
+  background: transparent;
   border-radius: 30px;
   border: 1px solid rgb(223 189 189 / 57%);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
 }
 .resume-output-wrapper .tool button{
   padding: 10px;
+}
+
+.resume-output-wrapper .tool button:hover{
+  background-color: #edf2f7;
 }

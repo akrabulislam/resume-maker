@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { SimpleLink } from "../../../ui/Link/Link";
 import { makeStyles } from "@mui/styles";
 import "./style.css";
-import { ResumeInputContext } from "../../../contexts/ResumeInputContext";
+import { ResumeContext } from "../../../contexts/ResumeContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
@@ -27,11 +27,7 @@ const useStyles = makeStyles({
 
 export const Navbar = () => {
   const classes = useStyles();
-  const { activeFeatures, setActiveFeatures } = useContext(ResumeInputContext);
-
-  useEffect(() => {
-    console.log(activeFeatures);
-  }, [activeFeatures]);
+  const { setShowNavbar } = useContext(ResumeContext);
 
   return (
     <div className="navbar">
@@ -41,7 +37,7 @@ export const Navbar = () => {
         slidesPerView={"auto"}
         centeredSlides={true}
         spaceBetween={30}
-        onSlideChange={(swiper) => setActiveFeatures(swiper.realIndex)}
+        onSlideChange={(swiper) => setShowNavbar(swiper.realIndex)}
         onSwiper={(swiper) => console.log(swiper)}
         className="mySwiper"
       >

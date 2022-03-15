@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { makeStyles } from "@mui/styles";
+import { ResumeContext } from "../../../../contexts/ResumeContext";
 
 const userStyle = makeStyles({
   myform: {
@@ -14,12 +15,16 @@ const userStyle = makeStyles({
 export const Profile = () => {
   const classes = userStyle();
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { setProfileData } = useContext(ResumeContext);
+  const onSubmit = (data) => {
+    setProfileData(data);
+    console.log(data);
+  }
 
   return (
-    <div className="profile" style={{ padding:"10px", paddingTop: "30px" }}>
+    <div className="profile" style={{ padding: "10px", paddingTop: "30px" }}>
       <form onChange={handleSubmit(onSubmit)} className={classes.myform} >
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap -mx-3 mb-3">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               First Name
@@ -45,19 +50,7 @@ export const Profile = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Photo URL
-            </label>
-            <input {...register("photourl")}
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-password"
-              placeholder="https://i.imgur.com/..."
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3">
+        <div className="flex flex-wrap -mx-3 mb-3">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Subtitle
@@ -69,8 +62,43 @@ export const Profile = () => {
             />
           </div>
         </div>
-        <hr class="my-6"></hr>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap -mx-3">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Motivation
+            </label>
+            <input {...register("motivation")}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-password"
+              placeholder="My motivation ..."
+            />
+          </div>
+        </div>
+        <hr className="my-6"></hr>
+        <div className="flex flex-wrap -mx-3 mb-3">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Email Address
+            </label>
+            <input {...register("emailAddress")}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              placeholder="janedoe@gmail.com"
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-3">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Mobile Number
+            </label>
+            <input {...register("mobileNumber")}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-password"
+              placeholder="+8801712345678"
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Address
@@ -82,37 +110,48 @@ export const Profile = () => {
             />
           </div>
         </div>
+        <hr className="my-6"></hr>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Mobile Number
+              Github
             </label>
-            <input {...register("mobile")}
+            <input {...register("github")}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-password"
-              placeholder="+8801712345678"
+              placeholder="https://github.com/akrabulislam"
             />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Webiste
+              Linked In
             </label>
-            <input {...register("website")}
+            <input {...register("linkedIn")}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              placeholder="janedoe.me"
+              placeholder="https://www.linkedin.com/in/.."
             />
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3">
+        <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Email Address
+              Quora
             </label>
-            <input {...register("mobile")}
+            <input {...register("quora")}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              placeholder="janedoe@gmail.com"
+              placeholder="https://www.quora.com/.."
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full px-3">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Stack Overflow
+            </label>
+            <input {...register("stackoverflow")}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              placeholder="https://stackoverflow.com/.."
             />
           </div>
         </div>

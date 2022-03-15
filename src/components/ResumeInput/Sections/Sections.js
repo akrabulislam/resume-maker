@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import { Profile } from "./SectionList/Profile";
 import { Summary } from "./SectionList/Summary";
 import { Experience } from "./SectionList/Experience";
@@ -7,10 +7,11 @@ import { TechnicalSkills } from "./SectionList/TechnicalSkills";
 import { Achievements } from "./SectionList/Achievements";
 import { Projects } from "./SectionList/Projects";
 import { Hobbies } from "./SectionList/Hobbies";
-import { ResumeInputContext } from "../../../contexts/ResumeInputContext";
+import { ResumeContext } from "../../../contexts/ResumeContext";
 import './style.css';
 
 function RenderActualComponent(value) {
+  console.log(value);
   switch (value) {
     case 0:
       return <Profile />;
@@ -40,8 +41,8 @@ function RenderActualComponent(value) {
 }
 
 export const Sections = () => {
-  const { activeFeatures } = useContext(ResumeInputContext);
+  const { content } = useContext(ResumeContext);
   return (
-    <div className="sections">{RenderActualComponent(activeFeatures)}</div>
+    <div className="sections">{RenderActualComponent(content.leftSidebar.activeNavbar)}</div>
   );
 };

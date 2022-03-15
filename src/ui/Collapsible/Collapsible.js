@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 
-export const Collapsible = () => {
+import { ResumeContext } from "../../contexts/ResumeContext";
+
+export const Collapsible = ({ position }) => {
+  const { content, setExperienceData } = useContext(ResumeContext);
+
   const [experiendField, setExperiendField] = useState({
     iscollapse: true,
     companyname: "Add Work Experience",
@@ -15,6 +19,7 @@ export const Collapsible = () => {
     description: "",
     isAdded: false,
     show: true,
+    bullets : []
   });
 
   const changeCollapse = () => {
@@ -33,8 +38,14 @@ export const Collapsible = () => {
     console.log(experiendField);
   };
 
-  const handleExperienceAdded = (e) => {
+  function bulletsChange (pos,value){
+    let updatedObject = experiendField;
+    updatedObject.bullets[pos] = value;
+    setExperiendField(updatedObject);
+    console.log(experiendField);
+  }
 
+  const handleExperienceAdded = (e) => {
     if (
       experiendField.companyname.length >= 1 &&
       experiendField.role.length >= 1 &&
@@ -46,7 +57,17 @@ export const Collapsible = () => {
         iscollapse: !prev.iscollapse,
         isAdded: true,
       }));
-      console.log(experiendField);
+
+      //now update the context
+      setExperienceData(position, {
+        name: experiendField.companyname,
+        role: experiendField.role,
+        start: experiendField.start,
+        end: experiendField.end,
+        description: experiendField.description,
+        bullets : experiendField.bullets,
+        show: true
+      });
     }
   };
 
@@ -70,7 +91,7 @@ export const Collapsible = () => {
             ? "Add Work Experience"
             : experiendField.companyname}
         </h6>
-        {!experiendField.iscollapse ? <ExpandLessIcon style={{width : '17px'}}/> : <ExpandMoreIcon style={{width : '17px'}}/>}
+        {!experiendField.iscollapse ? <ExpandLessIcon style={{ width: '17px' }} /> : <ExpandMoreIcon style={{ width: '17px' }} />}
       </div>
       {!experiendField.iscollapse && (
         <div className="mt-6 block">
@@ -162,6 +183,50 @@ export const Collapsible = () => {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="w-full flex flex-col mb-6">
+            <label className="uppercase tracking-wide text-gray-600 text-xs font-semibold mb-2">
+              Bullets
+            </label>
+            <input
+              className="appearance-none block mb-5 w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="I learner .. "
+              value = {experiendField.bullets[0]}
+              onChange={(e)=> bulletsChange(0,e.target.value)}
+            />
+
+            <input
+              className="appearance-none block mb-5 w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="I learner .."
+              value = {experiendField.bullets[1]}
+              onChange={(e)=> bulletsChange(1,e.target.value)}
+            />
+
+            <input
+              className="appearance-none block mb-5 w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="I learner .."
+              value = {experiendField.bullets[2]}
+              onChange={(e)=> bulletsChange(2,e.target.value)}
+            />
+
+            <input
+              className="appearance-none block mb-5 w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="I learner .."
+              value = {experiendField.bullets[3]}
+              onChange={(e)=> bulletsChange(3,e.target.value)}
+            />
+
+            <input
+              className="appearance-none block mb-5 w-full bg-gray-200 text-gray-800 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
+              placeholder="I learner .."
+              value = {experiendField.bullets[4]}
+              onChange={(e)=> bulletsChange(4,e.target.value)}
+            />
           </div>
           <div>
             {!experiendField.isAdded && (

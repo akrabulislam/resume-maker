@@ -2,15 +2,19 @@ import React from 'react';
 import './App.css';
 import { ResumeInput } from './components/ResumeInput/ResumeInput'
 import { ResumeOutput } from './components/ResumeOutput/ResumeOutput';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { ResumeOptions } from './components/ResumeOptions/ResumeOptions.js';
+import { ResumeContextProvider } from './contexts/ResumeContext';
 
 
 function App() {
   return (
-    <div className="App">
-      <ResumeInput />
-      <ResumeOutput />
-    </div>
+    <ResumeContextProvider >
+      <div className="App">
+        <ResumeInput />
+        <ResumeOutput />
+        <ResumeOptions />
+      </div>
+    </ResumeContextProvider>
   );
 }
 
