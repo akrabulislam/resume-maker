@@ -54,6 +54,9 @@ export default {
         grade : '3.54',
         start : '5/2016',
         end : '01/2021',
+        location : 'Banani,Dhaka',
+        url : 'https://seu.edu.bd/',
+        urlName : 'southeast.com',
         show : 'false'
       },
       two : {
